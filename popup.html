@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ad Replacer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      width: 220px;
+      font-family: 'Roboto', sans-serif;
+      background-color: #f4f7f9;
+      margin: 0;
+      padding: 15px;
+      text-align: center;
+      color: #333;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .header-image {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      font-size: 18px;
+      font-weight: 700;
+      margin: 10px 0 5px 0;
+    }
+
+    p#description {
+      font-size: 14px;
+      margin: 0 0 15px 0;
+      color: #555;
+    }
+
+    #replace-button {
+      background: linear-gradient(45deg, #2196F3, #1976D2);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+      box-shadow: 0 4px 10px rgba(33, 150, 243, 0.4);
+    }
+
+    #replace-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(33, 150, 243, 0.5);
+    }
+
+    #replace-button:active {
+      transform: translateY(0);
+      box-shadow: 0 4px 10px rgba(33, 150, 243, 0.4);
+    }
+
+    #status {
+      margin-top: 15px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #007bff;
+      min-height: 20px; /* Prevents layout shift when text appears */
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <img src="dog.jpg" alt="Dog" class="header-image">
+    <h1>Ad Replacer</h1>
+    <p id="description">Click the button to replace ads with a friendly face!</p>
+    <button id="replace-button">Unleash the Dog!</button>
+    <p id="status"></p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
