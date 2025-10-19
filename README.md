@@ -4,7 +4,7 @@ A chrome extension that allows the user to replace the ads with a single click w
 # Main features 
 Ad replacement (controlled by the user).
 Simple, clean and intuitive UI with instant feedback about how many ads were replaced after clicking on the button.
-Clean code focused on stability and user UX.
+Clean code focused on stability and UX.
 
 # Technologies used
 JavaScript (Event listeners, DOM (Document object model) manipulation and Chrome APIs (tested in thorium so it may work in most chromium based browsers) 
