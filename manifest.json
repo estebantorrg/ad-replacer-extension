@@ -5,7 +5,8 @@
   "description": "Replaces ads on a webpage with a dog.",
   "permissions": [
     "activeTab",
-    "scripting"
+    "scripting",
+    "storage"
   ],
   "action": {
     "default_popup": "popup.html"
