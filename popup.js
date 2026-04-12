@@ -6,15 +6,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Load state from storage
   chrome.storage.local.get(['autoReplace', 'dogsUnleashed'], function(result) {
-    toggleSwitch.checked = result.autoReplace || false;
-    totalStats.textContent = result.dogsUnleashed || 0;
+    if (toggleSwitch) toggleSwitch.checked = result.autoReplace || false;
+    if (totalStats) totalStats.textContent = result.dogsUnleashed || 0;
   });
 
   // Listen to toggle changes
-  toggleSwitch.addEventListener('change', function() {
-    const isChecked = toggleSwitch.checked;
-    chrome.storage.local.set({ autoReplace: isChecked });
-  });
+  if (toggleSwitch) {
+    toggleSwitch.addEventListener('change', function() {
+      const isChecked = toggleSwitch.checked;
+      chrome.storage.local.set({ autoReplace: isChecked });
+    });
+  }
 
   // Manual replace button
   replaceButton.addEventListener('click', function() {
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Listen for storage changes to update stats live
   chrome.storage.onChanged.addListener(function(changes, namespace) {
     if (namespace === 'local' && changes.dogsUnleashed) {
-      totalStats.textContent = changes.dogsUnleashed.newValue;
+      if (totalStats) totalStats.textContent = changes.dogsUnleashed.newValue;
     }
   });
 
@@ -49,17 +51,23 @@ document.addEventListener('DOMContentLoaded', function() {
   const modal = document.getElementById('changelog-modal');
   const closeModal = document.getElementById('close-modal');
 
-  infoIcon.addEventListener('click', function() {
-    modal.style.display = 'block';
-  });
+  if (infoIcon && modal) {
+    infoIcon.addEventListener('click', function() {
+      modal.style.display = 'block';
+    });
+  }
 
-  closeModal.addEventListener('click', function() {
-    modal.style.display = 'none';
-  });
-
-  window.addEventListener('click', function(event) {
-    if (event.target == modal) {
+  if (closeModal && modal) {
+    closeModal.addEventListener('click', function() {
       modal.style.display = 'none';
-    }
-  });
+    });
+  }
+
+  if (modal) {
+    window.addEventListener('click', function(event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    });
+  }
 });
