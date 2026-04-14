@@ -26,7 +26,9 @@ const ytAdSelectors = [
 let observer = null;
 let isAutoReplacing = false;
 let ytAdInterval = null;
-const dogImageURL = chrome.runtime.getURL('dog.png');
+const dogImageURL = chrome.runtime.getURL('public/dog.png');
+const elevatorMusic = new Audio(chrome.runtime.getURL('public/music.mp3'));
+elevatorMusic.loop = true;
 
 function handleYouTubeAds() {
   if (!window.location.hostname.includes('youtube.com')) return 0;
@@ -77,6 +79,9 @@ function handleYouTubeAds() {
     
     // Setup interval to enforce muting rapidly and auto-click skip button
     if (!ytAdInterval) {
+      if (elevatorMusic.paused) {
+        elevatorMusic.play().catch(e => console.log('Ad Replacer: Music blocked by browser.', e));
+      }
       ytAdInterval = setInterval(() => {
         enforceMute();
         
@@ -109,6 +114,10 @@ function handleYouTubeAds() {
     if (ytAdInterval) {
       clearInterval(ytAdInterval);
       ytAdInterval = null;
+      if (!elevatorMusic.paused) {
+        elevatorMusic.pause();
+        elevatorMusic.currentTime = 0;
+      }
     }
     // Restore sound
     const videos = player.querySelectorAll('video');

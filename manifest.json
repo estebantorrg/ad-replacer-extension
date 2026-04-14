@@ -19,7 +19,7 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": [ "dog.png" ],
+      "resources": [ "public/dog.png", "public/music.mp3" ],
       "matches": [ "<all_urls>" ]
     }
   ]
